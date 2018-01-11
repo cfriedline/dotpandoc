@@ -203,7 +203,7 @@ templates:
   granger-validation-latex:
     extends: 'latex-scholar'
     pandoc:
-      template: templates/pandoc-scholar.latex
+      template: templates/granger-validation.latex
     metadata:
       fontsize: '12pt'
       mainfont: 'Latin Modern Roman'
@@ -221,6 +221,9 @@ templates:
       geometry: "margin=1in"
       linestretch: '1.1'
       toc: true
+      lof: true
+      lot: true
+      mathjax: true
 ###################################################################################
 
 ###################################################################################
