@@ -19,7 +19,7 @@ templates:
     metadata:
       reference-section-title: "References"
       notes-after-punctuation: false
-      link-citations: true 
+      link-citations: true
     postprocessors: []
     cleanup: []
 ##############################################################################
@@ -42,12 +42,12 @@ templates:
 ##############################################################################
   docx-refs-not-linked:
     extends: ['docx','refs']
-    metadata: 
+    metadata:
       link-citations: false
 ##############################################################################
   docx-endnote:
     extends: ['docx','refs']
-    preprocessors: 
+    preprocessors:
       add: ['preprocessors/convertEndnoteRefs'] #turns endnote citations to pandoc citations
 ##############################################################################
   docx-changes:
@@ -67,7 +67,7 @@ templates:
       from: markdown
       to: latex
       standalone: true
-      filter: 
+      filter:
         - filters/removeHR #remove horizontal rules
         - filters/authorToName #convert author: to author: [name: affiliation:]
       template: templates/custom.latex
@@ -116,7 +116,7 @@ templates:
       standalone: true
       template: templates/letter.latex
     metadata:
-      author: 
+      author:
         - Jonna Doe
         - Institute of Cool
       opening: To whom it may concern,
@@ -154,13 +154,13 @@ templates:
       from: markdown
       to: latex
       standalone: true
-      filter: 
+      filter:
         - filters/removeHR #remove horizontal rules
       dpi: 300
       template: templates/eisvogel.latex
       toc: true
       base-header-level: 2
-    metadata: 
+    metadata:
       titlepage: true
       titlepage-color: BB5544
       titlepage-text-color: FFFFFF
@@ -186,7 +186,7 @@ templates:
     extends: 'latex-with-refs'
     pandoc:
       template: templates/ieee.latex
-    metadata: 
+    metadata:
       fontsize: '10pt'
 ##############################################################################
 # https://github.com/pandoc-scholar/pandoc-scholar
@@ -194,8 +194,44 @@ templates:
     extends: 'latex-with-refs'
     pandoc:
       template: templates/pandoc-scholar.latex
-    metadata: 
+    metadata:
       fontsize: '10pt'
+###################################################################################
+
+##############################################################################
+# https://github.com/pandoc-scholar/pandoc-scholar
+  granger-validation-latex:
+    extends: 'latex-scholar'
+    pandoc:
+      template: templates/pandoc-scholar.latex
+    metadata:
+      fontsize: '12pt'
+      mainfont: 'Latin Modern Roman'
+      mainfontoptions: 'Numbers=OldStyle,Numbers=Proportional'
+      sansfont: 'Latin Modern Sans'
+      sansfontoptions: 'Numbers=OldStyle,Numbers=Proportional'
+      monofont: 'Hack'
+      mathfont: 'Latin Modern Math'
+      mathfontoptions:
+      linkcolor: Black
+      citecolor: Black
+      urlcolor: Black
+      lang: 'en-US'
+      documentclass: 'article'
+      geometry: "margin=1in"
+      linestretch: '1.1'
+      toc: true
+###################################################################################
+
+###################################################################################
+  granger-validation-pdf:
+      extends: 'granger-validation-latex'
+      pandoc:
+        to: pdf
+        pdf-engine: 'xelatex'
+      cleanup: ['/usr/local/bin/latexmk -c']
+##############################################################################
+
 ##############################################################################
   memoir-with-refs:
     extends: 'latex-with-refs'
@@ -217,7 +253,7 @@ templates:
       number-sections: false
       section-divs: true
       mathjax: true
-      filter: 
+      filter:
         - 'filters/removeHR' #remove horizontal rules
       template: 'templates/custom.html'
       css: ['templates/custom.css']
@@ -284,7 +320,7 @@ templates:
       standalone: true
       filter: [pandoc-sidenote]
       template: 'templates/tufte.html5'
-      css: 
+      css:
         - 'templates/tufte.css'
         - 'templates/tuftepandoc.css'
       self-contained: true
